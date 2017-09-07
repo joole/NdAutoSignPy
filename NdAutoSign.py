@@ -193,8 +193,8 @@ class NdUser():
 
 if __name__ == '__main__':
     config = None
-    with open("/media/joole/LinuxDepot/Projects/LuaProjects/guard-card-server/cluster-ready/client/python_client/config.json", "r") as load_f:
-        config = json.load(load_f, encoding="ascii")
+    with open("config.json", "r") as load_f:
+        config = json.load(load_f)
         print(config)
     org_id = config["org_id"].encode('utf-8')
     users = config["users"]
