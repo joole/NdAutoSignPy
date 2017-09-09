@@ -248,7 +248,7 @@ class NdUser():
         elif code >=400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return False
         else:
             return True
@@ -277,7 +277,7 @@ class NdUser():
         elif code >=400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return []
         else:
             contents = json.loads(httpclient.GetResponseContent(), encoding="utf8")
@@ -312,7 +312,7 @@ class NdUser():
         elif code >= 400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return False
         else:
             return True
