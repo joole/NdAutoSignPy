@@ -33,7 +33,6 @@ class NdUser():
         logging.debug("LoginToUCCenter")
         httpclient  = NdHttpClient.NdHttpClient()
         url         = "https://"+ UC_SERVER + "/v0.93/tokens"
-        logging.debug("LoginToUCCenter url = {}".format(url))
         httpclient.SetRequestUrl(url) 
         httpclient.SetRequestMethod(NdHttpClient.eRequestType.kPost)    
         httpclient.AddRequestHeader("Content-type", "application/json");
@@ -56,11 +55,11 @@ class NdUser():
         elif code >= 400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
       
             return False
         else:
-            logging.debug("server response error : {}".format(httpclient.GetResponseContent()))
+            logging.debug("server response error : {0}".format(httpclient.GetResponseContent()))
             token_info  = httpclient.GetResponseContent()
             self.__tokeninfo = token_info
             return True
@@ -74,7 +73,7 @@ class NdUser():
         mac = util.encryptHMac256(rawMac, mac_key)
         access_token = self.getJsonValue(self.__tokeninfo, "access_token")
         authorization = "MAC id=\"" + access_token + "\",nonce=\"" + nonce + "\",mac=\"" + mac + "\""
-        return authorization
+        return authorization.encode("utf-8")
 
     def AutoSign(self):
         host = "im-sign.sdp.101.com"
@@ -99,12 +98,12 @@ class NdUser():
             logging.critical("can't connect to server")
             return False
         elif code > 400:
-            logging.error("server response error : http_code = {} response= {}".format(code, httpclient.GetResponseContent()))
+            logging.error("server response error : http_code = {0} response= {1}".format(code, httpclient.GetResponseContent()))
             return False
         elif code == 400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
         return True
 
     def GetBlessList(self):
@@ -130,7 +129,7 @@ class NdUser():
         elif code >= 400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return []
         else:
             birth_user = []
@@ -146,7 +145,7 @@ class NdUser():
         url = "http://" + host + path
         authorization = self.CalcAuthorithem(self.__tokeninfo, "POST", host, path)
         httpclient = NdHttpClient.NdHttpClient()
-        httpclient.SetRequestUrl(url)
+        httpclient.SetRequestUrl(url.encode("utf-8"))
         httpclient.SetRequestMethod(NdHttpClient.eRequestType.kPost)
         httpclient.AddRequestHeader("Host", host)
         httpclient.AddRequestHeader("User-Agent", USER_AGENT)
@@ -165,7 +164,7 @@ class NdUser():
         elif code >= 400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return True
         else:
             return True
@@ -194,7 +193,7 @@ class NdUser():
         elif code >= 400:
             err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
-            logging.error("server repsonse http_code = {} error_code = {} error_msg = {}".format(code, err_code, err_msg))
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return False
         else:
             logging.debug("p")
@@ -222,8 +221,9 @@ class NdUser():
             logging.critical("can't connect to server")
             return False
         elif code >=400:
-            
-            logging.error("service response error : {}".format(httpclient.GetResponseContent()))
+            err_code = self.getJsonValue(httpclient.GetResponseContent(), "code")
+            err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
+            logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return False
         
         path = "/v2/api/signs/todo"
@@ -319,8 +319,8 @@ class NdUser():
 
 
 if __name__ == '__main__':
-    #reload(sys)
-    #sys.setdefaultencoding('utf-8')
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
     #logging.basicConfig(level = logging.WARNING,
     #                    format = '%s(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s:%(message)s')
  
