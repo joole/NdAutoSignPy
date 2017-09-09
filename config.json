@@ -3,21 +3,12 @@
     "users":[
         {
             "user_uid":"121416",
-            "user_pwd":"xxxxxxx",
+            "user_pwd":"zsy19851005",
             "send_flower_list" :[
-                {"recv_uid" : "768696", "count":1},
+                {"recv_uid" : "359547", "count":1},
                 {"recv_uid" : "111315", "count":1},
-                {"recv_uid" : "624130", "count":1}
+                {"recv_uid" : "201517", "count":1}
             ]
-        },
-        {
-            "user_uid":"111315",
-            "user_pwd":"xxxxxxx",
-            "send_flower_list" :[
-                {"recv_uid" : "768696", "count":1},
-                {"recv_uid" : "121416", "count":1},
-                {"recv_uid" : "624130", "count":1}
-            ]
-        }
+        }    
     ]
 }

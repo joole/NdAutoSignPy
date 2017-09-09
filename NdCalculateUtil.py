@@ -33,7 +33,6 @@ class NdCalculateUtil():
     def md5Encrypt(self,src):
         #salt_byte_arr = bytearray(b'\xa3\xac\xa1\xa3\x66\x64\x6a\x66\x2c\x6a\x6b\x67\x66\x6b\x6c')  
         code = sys.getdefaultencoding()
-        print code
         salt_str = b'\xa3\xac\xa1\xa3fdjf,jkgfkl'       
         hash = hashlib.md5()
 
