@@ -203,10 +203,10 @@ class NdUser():
         host = "sign-out.sdp.101.com"
         path = "/v2/api/signs"
         url = "https://" + host + path
-        authorizatioin = self.CalcAuthorithem(self.__tokeninfo, "GET", host, path)
+        authorizatioin = self.CalcAuthorithem(self.__tokeninfo, "POST", host, path)
         httpclient = NdHttpClient.NdHttpClient()
         httpclient.SetRequestUrl(url)
-        httpclient.SetRequestMethod(NdHttpClient.eRequestType.kGet)    
+        httpclient.SetRequestMethod(NdHttpClient.eRequestType.kPost)    
         httpclient.AddRequestHeader("Host", host)
         httpclient.AddRequestHeader("User-Agent", USER_AGENT)
         httpclient.AddRequestHeader("Accept", "application/json")
@@ -225,7 +225,9 @@ class NdUser():
             err_msg  = self.getJsonValue(httpclient.GetResponseContent(), "message")    
             logging.error("server repsonse http_code = {0} error_code = {1} error_msg = {2}".format(code, err_code, err_msg))
             return False
-        
+        else:
+            return True
+        '''
         path = "/v2/api/signs/todo"
         url = "https://" + host + path
         authorizatioin = self.CalcAuthorithem(self.__tokeninfo, "GET", host, path)
@@ -252,6 +254,7 @@ class NdUser():
             return False
         else:
             return True
+        '''
 
     def GetRewardList(self):
         host= "pbl4task.sdp.101.com"
