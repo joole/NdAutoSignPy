@@ -2,8 +2,8 @@
     "org_id" : "nd",
     "users":[
         {
-            "user_uid":"121416",
-            "user_pwd":"zsy19851005",
+            "user_uid":"****",   // 99uid: 777
+            "user_pwd":"****",
             "send_flower_list" :[
                 {"recv_uid" : "359547", "count":1},
                 {"recv_uid" : "111315", "count":1},
